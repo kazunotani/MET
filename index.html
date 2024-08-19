@@ -28,10 +28,18 @@ p{
    font-size:700%
 
 }
+input{
+    height:100px;
+    width:150px;
+    font-size:70px;
+}
     </style>
 </head>
 <body>
     <p id = "AIUEO"></p>
+    <audio id="One">
+        <source src="tanpin.mp3" type="audio/mp3">
+      </audio>
     <audio id="bgm1">
         <source src="70.mp3" type="audio/mp3">
       </audio>
@@ -62,7 +70,8 @@ p{
     <br><br>
     <a href="#" class="btn-square" onclick = "A120()"><font size="+5">120</font></a>
     <a href="#" class="btn-square" onclick = "A152()"><font size="+5">152</font></a>
-
+     <input id = "iinput"type="number" height = 300px width = 300px>
+     <a href="#" class="btn-square" onclick = "Run()"><font size="+5">鳴らす</font></a>
     <br>
     <br>
     <br>
@@ -80,15 +89,17 @@ p{
     <br>
     <br>
     <br>
-    <a href="#" class="btn-square" onclick = "P()"><font size= "+5">停止(困ったらここをclick)</font></a>
+    <a href="#" class="btn-square" onclick = "P()"><font size= "+5">音を停止(困ったらここをclick)</font></a>
     <script>
+        let interval = null;
+                const iinput = document.getElementById("iinput");
         const AIUEO = document.getElementById("AIUEO");
         const bgm1 = document.querySelector("#bgm1");
         const bgm2 = document.querySelector("#bgm2");
         const bgm3 = document.querySelector("#bgm3");
         const bgm4 = document.querySelector("#bgm4");
         const bgm5 = document.querySelector("#bgm5");
-        const rit = document.querySelector("#rit");
+
         function A70(){
            bgm2.pause();
            bgm3.pause();
@@ -146,6 +157,13 @@ p{
            bgm6.pause();
            bgm7.play();
         }
+        function Run(){
+            if (interval != null)
+               clearInterval(interval);
+            interval = window.setInterval(() => {
+                One.play();
+            },60 / iinput.value * 1000)
+        }
         function B(number){
             K70();
             window.setTimeout(() => {
@@ -172,23 +190,27 @@ p{
                 A100();
             }, 2300);
             window.setTimeout(() => {
-                AIUEO.innerHTML = "rit..."
+                AIUEO.innerHTML = "rit 100→70"
                 bgm4.pause();
                 rit.play();
-
-            },40800);
-            window.setTimeout(() => {
-                AIUEO.innerHTML = "changed<br>100→70"
-                A70();
                 window.setTimeout(() => {
+                     AIUEO.innerHTML = "Changed 70";
+                }, 3000); window.setTimeout(() => {
                      AIUEO.innerHTML = "";
-                }, 2000);
+                }, 3885);
 
-            },44575);
+            },40700);
+            window.setTimeout(() => {
+
+                A70();
+
+
+            },46980-2400);
             window.setTimeout(() => {
                 P();
 
-            },85717);
+            },81865.71-2400 - 800
+            );
         }
         function P(){
             window.location.reload();
