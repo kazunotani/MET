@@ -8,7 +8,7 @@
         .btn-square {
   display: inline-block;
   font-size: 200%;
-  padding: 1em 2em;
+  padding: 0.8em 1.6em;
   text-decoration: none;
   background: #0051ff;/*ボタン色*/
   color: #FFF;
@@ -21,9 +21,17 @@
   transform: translateY(4px);/*下に動く*/
   border-bottom: none;/*線を消す*/
 }
+p{
+   position:absolute;
+   top:600px;
+   left:0px;
+   font-size:700%
+
+}
     </style>
 </head>
 <body>
+    <p id = "AIUEO"></p>
     <audio id="bgm1">
         <source src="70.mp3" type="audio/mp3">
       </audio>
@@ -51,19 +59,30 @@
     <a href="#" class="btn-square" onclick = "A70()"><font size= "+5">70</font></a>
     <a href="#" class="btn-square" onclick = "A80()"><font size="+5">80</font></a>
     <a href="#" class="btn-square" onclick = "A100()"><font size="+5">100</font></a>
-    <a href="#" class="btn-square" onclick = "bgm7.play()"><font size="+5">120</font></a>
+    <br><br>
+    <a href="#" class="btn-square" onclick = "A120()"><font size="+5">120</font></a>
     <a href="#" class="btn-square" onclick = "A152()"><font size="+5">152</font></a>
 
     <br>
     <br>
     <br>
-    <a href="#" class="btn-square" onclick = "B()">I前glockから(空振り4つ)</a>
-    <a href="#" class="btn-square" onclick = "C()">最初-M1終わり(空振り4つ)</a>
+    <a href="#" class="btn-square" onclick = "C()">最初-M1終わり</a>
+
+
+    <a href="#" class="btn-square" onclick = "B(68571.42857
+)">I前の16拍の頭-最後</a>
+    <br>
+    <br>
+    <a href="#" class="btn-square" onclick = "B(54857.14286
+)">I-最後</a>
+    <a href="#" class="btn-square" onclick = "B(27428.57)">K-最後</a>
+    <a href="#" class="btn-square" onclick = "B(13714.29)">L-最後</a>
     <br>
     <br>
     <br>
     <a href="#" class="btn-square" onclick = "P()"><font size= "+5">停止(困ったらここをclick)</font></a>
     <script>
+        const AIUEO = document.getElementById("AIUEO");
         const bgm1 = document.querySelector("#bgm1");
         const bgm2 = document.querySelector("#bgm2");
         const bgm3 = document.querySelector("#bgm3");
@@ -76,13 +95,14 @@
            bgm4.pause();
            bgm5.pause();
            bgm1.play();
+           bgm7.pause();
         }
         function A152(){
            bgm1.pause();
            bgm3.pause();
            bgm4.pause();
            bgm5.pause();
-           bgm2.play();
+           bgm2.play();           bgm7.pause();
         }
         function A80(){
            bgm1.pause();
@@ -90,7 +110,7 @@
            bgm4.pause();
            bgm5.pause();
            bgm3.play();
-           bgm6.pause();
+           bgm6.pause();           bgm7.pause();
         }
     
         function A100(){
@@ -99,14 +119,14 @@
            bgm3.pause();
            bgm5.pause();
            bgm6.pause();
-           bgm4.play();
+           bgm4.play();           bgm7.pause();
         }
         function K70(){
            bgm1.pause();
            bgm2.pause();
            bgm3.pause();
            bgm4.pause();
-           bgm6.pause();
+           bgm6.pause();           bgm7.pause();
            bgm5.play();
         }
         function K100(){
@@ -114,22 +134,37 @@
            bgm2.pause();
            bgm3.pause();
            bgm3.pause();
-           bgm5.pause();
+           bgm5.pause();           bgm7.pause();
            bgm6.play();
         }
-        function B(){
+        function A120(){
+           bgm1.pause();
+           bgm2.pause();
+           bgm3.pause();
+           bgm4.pause();
+           bgm5.pause();
+           bgm6.pause();
+           bgm7.play();
+        }
+        function B(number){
             K70();
             window.setTimeout(() => {
                 A70();
-            }, 3428.571);
+            }, 3328.571);
             window.setTimeout(() => {
-                A80();
 
-            },58285.71);
+                A80();
+                AIUEO.innerHTML = "changed<br>70→80"
+                window.setTimeout(() => {
+                     AIUEO.innerHTML = "";
+                }, 2000);
+
+            },number + 3328.571);
             window.setTimeout(() => {
                 P();
 
-            },87535.71);
+            },26250 + number + 3328.571
+            );
         }
         function C(){
             K100();
@@ -137,18 +172,23 @@
                 A100();
             }, 2400);
             window.setTimeout(() => {
+                AIUEO.innerHTML = "rit..."
                 bgm4.pause();
                 rit.play();
 
             },40800);
             window.setTimeout(() => {
+                AIUEO.innerHTML = "changed<br>100→70"
                 A70();
+                window.setTimeout(() => {
+                     AIUEO.innerHTML = "";
+                }, 2000);
 
-            },44675);
+            },44575);
             window.setTimeout(() => {
                 P();
 
-            },85817);
+            },85717);
         }
         function P(){
             window.location.reload();
